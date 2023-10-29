@@ -36,6 +36,20 @@ body {
   background-color: rgb(40, 37, 53);
 }
 
+.brand-title{
+  color: #7a56de;
+}
+
+.logo-title{
+  display: flex;
+  align-items: center;
+}
+
+.logo{
+  width: 3rem;
+  height: 3rem;
+}
+
 main {
   /* padding: 10px; */
   height: 80vh;
@@ -159,7 +173,7 @@ p {
 
 .sent p {
   color: white;
-  background: #0b93f6;
+  background: #810bf6;
   align-self: flex-end;
 }
 .received p {

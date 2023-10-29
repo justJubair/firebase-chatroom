@@ -11,7 +11,7 @@ import { useEffect, useRef } from "react";
 import { useState } from "react";
 import auth, { app } from "./firebase/firebase.config";
 import { addDoc, collection, getFirestore, limit, orderBy, query, serverTimestamp } from "firebase/firestore";
-
+import logo from "./assets/logo.png"
 
 const firestore = getFirestore(app)
 // const analytics = getAnalytics(app)
@@ -113,7 +113,10 @@ function App() {
     <>
       <div className="App">
         <header>
-          <h2>Locker Room</h2>
+         <div className="logo-title">
+          <img className="logo" src={logo} alt="" />
+         <h3 className="brand-title">Thought Bite</h3>
+         </div>
           {
             user &&  <button className="sign-out" onClick={handleSignOut}>Sign out</button>
           }
