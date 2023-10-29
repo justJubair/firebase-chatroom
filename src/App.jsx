@@ -88,7 +88,7 @@ function App() {
     // ChatMessage Component
     const ChatMessage = ({message}) => {
         const {text, uid, photoURL}  = message
-     const messageClass = uid === auth.currentUser.uid ? "send" : "received";
+     const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
 
       return(
        <div className={`message ${messageClass}`}>
@@ -113,7 +113,7 @@ function App() {
     <>
       <div className="App">
         <header>
-          <h1>Chity-Chat</h1>
+          <h2>Locker Room</h2>
           {
             user &&  <button className="sign-out" onClick={handleSignOut}>Sign out</button>
           }
