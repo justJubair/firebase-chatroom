@@ -6,17 +6,15 @@ import {
   signOut,
 } from "firebase/auth";
 import PropTypes from "prop-types";
-// import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useEffect, useRef } from "react";
 import { useState } from "react";
 import auth from "./firebase/firebase.config";
-// import { addDoc, collection, getFirestore, limit, orderBy, query, serverTimestamp } from "firebase/firestore";
+
 import logo from "./assets/logo.png"
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
-// const firestore = getFirestore(app)
-// const analytics = getAnalytics(app)
+
 function App() {
   const [user, setUser] = useState({});
   //  sign in with google
@@ -61,11 +59,6 @@ function App() {
         return res.data
       }
     })
-    // const messagesRef = collection(firestore, 'messages');
-    // const q = query(messagesRef, orderBy('createdAt'), limit(25));
-  
-    // const [messages] = useCollectionData(q, { idField: 'id' });
-    // const [messages, setMessages] = useState([]) 
     const [formValue, setFormValue] = useState('')
 
     const sendMessage = async(e)=>{
