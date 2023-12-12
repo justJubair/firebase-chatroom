@@ -55,7 +55,7 @@ function App() {
     const {data:messages, refetch} = useQuery({
       queryKey: [user, "message"],
       queryFn: async()=>{
-        const res = await axios.get("http://localhost:5000/messages")
+        const res = await axios.get("https://thought-bite-server.vercel.app/messages")
         return res.data
       }
     })
@@ -66,7 +66,7 @@ function App() {
       const {email, photoURL} = auth.currentUser;
       
       try{
-        await axios.post("http://localhost:5000/messages", {text:formValue, email, photoURL})
+        await axios.post("https://thought-bite-server.vercel.app/messages", {text:formValue, email, photoURL})
         refetch()
       }
       catch(err){
