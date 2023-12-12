@@ -12,6 +12,8 @@ import { useState } from "react";
 import auth from "./firebase/firebase.config";
 // import { addDoc, collection, getFirestore, limit, orderBy, query, serverTimestamp } from "firebase/firestore";
 import logo from "./assets/logo.png"
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 // const firestore = getFirestore(app)
 // const analytics = getAnalytics(app)
@@ -52,22 +54,32 @@ function App() {
   // ChatRoom component
   const ChatRoom = () => {
     const dummy = useRef()
+    const {data:messages, refetch} = useQuery({
+      queryKey: [user, "message"],
+      queryFn: async()=>{
+        const res = await axios.get("http://localhost:5000/messages")
+        return res.data
+      }
+    })
     // const messagesRef = collection(firestore, 'messages');
     // const q = query(messagesRef, orderBy('createdAt'), limit(25));
   
     // const [messages] = useCollectionData(q, { idField: 'id' });
-    const [messages, setMessages] = useState([]) 
+    // const [messages, setMessages] = useState([]) 
     const [formValue, setFormValue] = useState('')
 
     const sendMessage = async(e)=>{
       e.preventDefault()
-      const {uid, photoURL} = auth.currentUser;
-      // await addDoc(messagesRef, {
-      //   text: formValue,
-      //   createdAt: serverTimestamp(),
-      //   uid,
-      //   photoURL
-      // })
+      const {email, photoURL} = auth.currentUser;
+      
+      try{
+        await axios.post("http://localhost:5000/messages", {text:formValue, email, photoURL})
+        refetch()
+      }
+      catch(err){
+        console.log("Message posting error", err)
+      }
+   
       setFormValue("")
       dummy.current.scrollIntoView({behavior: "smooth"})
     }
@@ -88,8 +100,8 @@ function App() {
 
     // ChatMessage Component
     const ChatMessage = ({message}) => {
-        const {text, uid, photoURL}  = message
-     const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
+        const {text, email, photoURL}  = message
+     const messageClass = email === auth?.currentUser?.email ? "sent" : "received";
 
       return(
        <div className={`message ${messageClass}`}>
@@ -105,7 +117,6 @@ function App() {
     const SignIn = () => {
       return(
         <>
-          
             <button className="sign-in" onClick={handleSignIn}>Sign in</button>
         </>
       )}
