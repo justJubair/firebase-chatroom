@@ -53,6 +53,7 @@ function App() {
   const ChatRoom = () => {
     const dummy = useRef()
     const {data:messages, refetch} = useQuery({
+      enabled: !user,
       queryKey: [user, "message"],
       queryFn: async()=>{
         const res = await axios.get("https://thought-bite-server.vercel.app/messages")
