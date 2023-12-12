@@ -1,8 +1,7 @@
-# React + Vite
+# Thought Bite 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Live site link](https://firebase-chatroom-beta.vercel.app)
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Basic chatroom build with React and raw CSS.
+- Users can login with google and they will be redirected to the chatroom. All the messages are visible to everyone who is logged in currently. 
+- Database: firestore is used for primary database.
