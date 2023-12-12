@@ -6,14 +6,14 @@ import {
   signOut,
 } from "firebase/auth";
 import PropTypes from "prop-types";
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+// import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useEffect, useRef } from "react";
 import { useState } from "react";
-import auth, { app } from "./firebase/firebase.config";
-import { addDoc, collection, getFirestore, limit, orderBy, query, serverTimestamp } from "firebase/firestore";
+import auth from "./firebase/firebase.config";
+// import { addDoc, collection, getFirestore, limit, orderBy, query, serverTimestamp } from "firebase/firestore";
 import logo from "./assets/logo.png"
 
-const firestore = getFirestore(app)
+// const firestore = getFirestore(app)
 // const analytics = getAnalytics(app)
 function App() {
   const [user, setUser] = useState({});
@@ -52,21 +52,22 @@ function App() {
   // ChatRoom component
   const ChatRoom = () => {
     const dummy = useRef()
-    const messagesRef = collection(firestore, 'messages');
-    const q = query(messagesRef, orderBy('createdAt'), limit(25));
+    // const messagesRef = collection(firestore, 'messages');
+    // const q = query(messagesRef, orderBy('createdAt'), limit(25));
   
-    const [messages] = useCollectionData(q, { idField: 'id' });
+    // const [messages] = useCollectionData(q, { idField: 'id' });
+    const [messages, setMessages] = useState([]) 
     const [formValue, setFormValue] = useState('')
 
     const sendMessage = async(e)=>{
       e.preventDefault()
       const {uid, photoURL} = auth.currentUser;
-      await addDoc(messagesRef, {
-        text: formValue,
-        createdAt: serverTimestamp(),
-        uid,
-        photoURL
-      })
+      // await addDoc(messagesRef, {
+      //   text: formValue,
+      //   createdAt: serverTimestamp(),
+      //   uid,
+      //   photoURL
+      // })
       setFormValue("")
       dummy.current.scrollIntoView({behavior: "smooth"})
     }
