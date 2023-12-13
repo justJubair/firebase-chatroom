@@ -112,6 +112,10 @@ button {
   font-size: 1.25rem;
 }
 
+.image_field{
+  display: none;
+}
+
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;

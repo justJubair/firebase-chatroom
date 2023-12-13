@@ -53,7 +53,7 @@ function App() {
   const ChatRoom = () => {
     const dummy = useRef()
     const {data:messages, refetch} = useQuery({
-      enabled: !user,
+      enabled: !!user,
       queryKey: [user, "message"],
       queryFn: async()=>{
         const res = await axios.get("https://thought-bite-server.vercel.app/messages")
@@ -86,7 +86,12 @@ function App() {
        </main>
 
          <form onSubmit={sendMessage}>
-          <input value={formValue} onChange={e=> setFormValue(e.target.value)} type="text" name="message" id="message" />
+          <input value={formValue} onChange={e=> setFormValue(e.target.value)} type="text" name="message" id="message" required/>
+          <label htmlFor="
+          ">
+            <input className="image_field" type="file" name="" id="" />
+            imgage
+          </label>
           <button type="submit">Send</button>
          </form>
       </div>
